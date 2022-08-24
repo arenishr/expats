@@ -1,10 +1,18 @@
 package com.sfservices.expats.repository;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class JobProfile {
 	
 	//<!-- id 	title 	sector 	qualification 	experience 	skills 	license 	salary 	remarks -->
 	
-	private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	private String title;
 	private String sector;
 	private String qualification;
@@ -13,10 +21,27 @@ public class JobProfile {
 	private String license;
 	private String salary;
 	private String remarks;
-	public int getId() {
+	
+	
+	protected JobProfile() {}
+
+	  public JobProfile(String title, String qualification) {
+	    this.title = title;
+	    this.qualification = qualification;
+	  }
+
+	  @Override
+	  public String toString() {
+	    return String.format(
+	        "The JobProfile is [id=%d, title='%s', qualification='%s']",
+	        id, title, qualification);
+	  }
+	  
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getTitle() {

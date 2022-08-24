@@ -1,10 +1,18 @@
 package com.sfservices.expats.repository;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class CV {
 	
 	//<!-- id 	name 	education_1 	education_2 	id_type 	id_no 	current_job 	experience 	skills 	languages  -->
 	
-	private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	private String name;
 	private String education_1;
 	private String education_2;
@@ -14,10 +22,27 @@ public class CV {
 	private String experience;
 	private String skills;
 	private String languages;
-	public int getId() {
+	
+	
+	
+	protected CV() {}
+
+	  public CV(String name, String current_job) {
+	    this.name = name;
+	    this.current_job = current_job;
+	  }
+
+	  @Override
+	  public String toString() {
+	    return String.format(
+	        "The User CV is [id=%d, name='%s', current_job='%s']",
+	        id, name, current_job);
+	  }
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {
