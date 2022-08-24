@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sfservices.expats.repository.CV;
 import com.sfservices.expats.repository.JobProfile;
 
-@CrossOrigin(origins = "*")
+
 @RestController
 public class homeController {
 	
@@ -24,23 +24,37 @@ public class homeController {
 	
 	@GetMapping("/api/test")
 	@ResponseBody
-    public ResponseEntity<String> test() {
+    public ResponseEntity<?> test() {
 		System.out.println("in java");
         return ResponseEntity.ok("success");
     }
 	
-	@PostMapping("/savejob")
+	@GetMapping("/api/getjobs")
 	@ResponseBody
-    public ResponseEntity<String> save(@RequestBody JobProfile rawdata) {
+    public ResponseEntity<?> getJobs() {
+		System.out.println("fetching jobs in java");
+        return ResponseEntity.ok("list the jobs success");
+    }
+	
+	@GetMapping("/api/getcvs")
+	@ResponseBody
+    public ResponseEntity<?> getCVs() {
+		System.out.println("fetching CVs in java");
+        return ResponseEntity.ok("list the cvs success");
+    }
+	
+	@PostMapping("/api/savejob")
+	@ResponseBody
+    public ResponseEntity<?> save(@RequestBody JobProfile rawdata) {
 		System.out.println("data recieved");
         return ResponseEntity.ok("Job saved successfully");
     }
 	
-	@PostMapping("/savecv")
+	@PostMapping("/api/savecv")
 	@ResponseBody
-    public ResponseEntity<String> saveCV(@RequestBody CV rawdata) {
-		System.out.println("savejob: data recieved");
-        return ResponseEntity.ok("Job saved successfully");
+    public ResponseEntity<?> saveCV(@RequestBody CV rawdata) {
+		System.out.println("saveCV: data recieved");
+        return ResponseEntity.ok("CV saved successfully");
     }
 
 }
